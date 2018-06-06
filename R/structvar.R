@@ -15,10 +15,10 @@ map_translocation_mate <- function(manta_df){
     translocations <- tidyr::separate(translocations, CYTOBAND_PARTNER, c('cyto_chrom_partner','cyto_band_partner'),sep=":")
 
     translocations$ABERRATION <- paste0("t(",translocations$cyto_chrom,";",translocations$cyto_chrom_partner,")(",translocations$cyto_band,";",translocations$cyto_band_partner,")")
-    translocations <- dplyr::filter(translocations, !(cyto_chrom_partner == 'X' | cyto_chrom_partner == 'Y' | cyto_chrom_partner == 'M'))
+    translocations <- dplyr::filter(translocations, !(cyto_chrom_partner == 'X' | cyto_chrom_partner == 'Y' | cyto_chrom_partner == 'M' | stringr::str_detect(cyto_chrom_partner,"Un_|_random|_hap")))
     translocations_sex_mito <- dplyr::filter(translocations, cyto_chrom == 'X' | cyto_chrom == 'Y' | cyto_chrom == 'M') %>%
       dplyr::select(-c(chromosome, cyto_chrom, cyto_chrom_partner, cyto_band, cyto_band_partner))
-    translocations_auto <- dplyr::filter(translocations, !(cyto_chrom == 'X' | cyto_chrom == 'Y' | cyto_chrom == 'M'))
+    translocations_auto <- dplyr::filter(translocations, !(cyto_chrom == 'X' | cyto_chrom == 'Y' | cyto_chrom == 'M' | stringr::str_detect(cyto_chrom,"Un_|_random|_hap")))
     translocations_auto$cyto_chrom <- as.integer(translocations_auto$cyto_chrom)
     translocations_auto$cyto_chrom_partner <- as.integer(translocations_auto$cyto_chrom_partner)
     translocations_auto <- dplyr::filter(translocations_auto, cyto_chrom <= cyto_chrom_partner) %>%
@@ -33,7 +33,7 @@ map_translocation_mate <- function(manta_df){
 valid_manta_data <- function(manta_df_raw){
   for(col in c("CHROM","POS","ALT","VCF_SAMPLE_ID","SVTYPE","ID","FILTER","IMPRECISE","INV3","INV5","BND_DEPTH","MATE_BND_DEPTH","MATEID","SOMATICSCORE","PR","SR")){
     if(!(col %in% colnames(manta_df_raw))){
-      rlogging::stop(paste0('Manta input VCF data is missing a required column - ', col, ' - EXITING'))
+      rlogging::stop(paste0('Manta input data (vcf2tsv output) is missing a required column - ', col, ' - EXITING'))
     }
   }
 }
@@ -82,10 +82,16 @@ map_cytoband <- function(break_gr, build = 'grch37', sub_bands = F){
 
 parse_manta_sv <- function(manta_vcf2tsv_fname, build = 'grch37', translocations_only = T, control_sample_pattern = '-N01'){
 
+  if(!file.exists(manta_vcf2tsv_fname)){
+    rlogging::stop(paste0('Input file ',manta_vcf2tsv_fname, ' does not exist - EXITING'))
+  }
+  if(!(build == 'grch37' || build == 'grch38')){
+    rlogging::stop(paste0('Genome build must be one of grch37/grch38 - current input is ',build))
+  }
   rlogging::message('Reading somatic Manta data (i.e. \'somaticSV.vcf.gz\'), VCF converted to tab-separated output with https://github.com/sigven/vcf2tsv')
   rlogging::message('Filename: ', manta_vcf2tsv_fname)
   manta_tsv_raw <- read.table(file=manta_vcf2tsv_fname,skip = 1,header=T,stringsAsFactors = F,quote = "")
-  rlogging::message('Validating Manta data')
+  rlogging::message('Validating Manta data - check that all required columns are present')
   structVaR::valid_manta_data(manta_tsv_raw)
 
   manta_df <- dplyr::mutate(manta_tsv_raw, chromosome = CHROM) %>%
@@ -108,13 +114,33 @@ parse_manta_sv <- function(manta_vcf2tsv_fname, build = 'grch37', translocations
     }
   }
 
+  ## check the existence of genotypes for control sample
+  control_genotypes_found <- TRUE
+  manta_df_control <- manta_df %>% dplyr::filter(stringr::str_detect(VCF_SAMPLE_ID,control_sample_pattern))
+  if(nrow(manta_df_control) == 0){
+    rlogging::warning(paste0('Not able to retrieve genotype data for the control sample - regular expression (',control_sample_pattern,') not correctly specified?'))
+    control_genotypes_found <- FALSE
+  }else{
+    manta_df_control <- manta_df_control %>%
+      dplyr::rename(PAIRED_READ_SUPPORT_CONTROL = PR, SPLIT_READ_SUPPORT_CONTROL = SR) %>%
+      dplyr::select(ID,PAIRED_READ_SUPPORT_CONTROL,SPLIT_READ_SUPPORT_CONTROL)
+  }
+
   manta_df <- manta_df %>%
     dplyr::select(chromosome,POS,ALT,segmentID,VCF_SAMPLE_ID,SVTYPE,ID,FILTER,BND_DEPTH,MATE_BND_DEPTH,MATEID,SOMATICSCORE,PR,SR) %>%
     #dplyr::filter(FILTER == 'PASS') %>%
     dplyr::filter(!stringr::str_detect(VCF_SAMPLE_ID,control_sample_pattern)) %>%
-    dplyr::rename(PAIRED_READ_SUPPORT = PR, SPLIT_READ_SUPPORT = SR) %>%
+    dplyr::rename(PAIRED_READ_SUPPORT_TUMOR = PR, SPLIT_READ_SUPPORT_TUMOR = SR) %>%
     dplyr::select(-FILTER)
 
+
+
+  if(control_genotypes_found){
+    manta_df <- dplyr::left_join(manta_df, manta_df_control, by=c("ID"))
+  }else{
+    manta_df$PAIRED_READ_SUPPORT_CONTROL <- NA
+    manta_df$SPLIT_READ_SUPPORT_CONTROL <- NA
+  }
 
   if(translocations_only){
     manta_df <- dplyr::filter(manta_df, SVTYPE == 'BND')
@@ -122,6 +148,10 @@ parse_manta_sv <- function(manta_vcf2tsv_fname, build = 'grch37', translocations
 
   manta_gr <- NULL
   if(nrow(manta_df) > 0){
+    manta_df$SOMATIC_CALL_CONFIDENCE <- 'High'
+    if(nrow(manta_df[manta_df$SOMATICSCORE < 30,]) > 0){
+      manta_df$SOMATIC_CALL_CONFIDENCE <- 'Low'
+    }
     if(build == 'grch37'){
       manta_gr <- GenomicRanges::makeGRangesFromDataFrame(manta_df, keep.extra.columns = T, seqinfo = seqinfo(BSgenome.Hsapiens.UCSC.hg19), seqnames.field = 'chromosome',start.field = 'POS', end.field = 'POS', ignore.strand = T, starts.in.df.are.0based = T)
     }
