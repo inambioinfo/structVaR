@@ -1,0 +1,149 @@
+CGAP
+
+FILES IN THIS DIRECTORY
+=======================
+NOTE:  The files in this directory have been prefixed with designations 
+of the organism to which they pertain.
+
+	"Hs" - Homo sapiens
+	"Mm" - Mus musculus
+
+
+
+Hs_GeneData.dat
+Mm_GeneData.dat
+
+   The data in the Gene Data files represents the information found
+   on the CGAP Gene Info page.  Each gene section begins with the
+   >> character delimiter followed by the UniGene Cluster ID. Subsequent lines
+   in the section indicate particular features of the gene, each beginning
+   with a descriptive qualifier followed by a colon.  Multiple features
+   associated with a single qualifier are separated by the pipe '|' character.
+   The content of these lines is described below.
+
+
+   Line types/qualifiers:
+
+       >>UniGene Cluster ID
+
+       UNIGENE:     Organism designator.UniGene Cluster ID
+
+       SYMBOL:      Gene symbol
+
+       TITLE:       Title for the cluster
+
+       LOCUSID:     LocusLink identifier associated with at least
+                    one sequence in this cluster 
+
+       CYTOBAND:    Cytogenic location
+
+       OMIM:        OMIM number (Online Mendelian Inheritance in Man)
+
+       SEQUENCE:    Representative GenBank Sequence ID
+
+       BIOCARTA:    BioCarta pathways in which this gene participates
+                        BioCarta pathway designator
+                        Full pathway title
+
+       KEGG:        Kegg pathways in which this gene participates
+                        Kegg pathway designator
+                        Full pathway title
+
+       GO:          Gene Ontology categories with which this gene is associated
+                        Gene Ontology identifier
+                        Gene Ontology vocabulary term
+
+       MOTIF:       Protein similarities based on shared motif content
+                        Motif name	
+	                PFAM identifier
+                        GenBank Accession number
+                        Position of first amino acid in domain
+                        Position of last amino acid in domain
+                        Degree of similarity (higher score is a better match)
+                        Statistical significance of the match (e-value)
+			  ** An e-value > 0.1 is not considered a significant
+			     match unless the protein also contains another
+			     copy of the same motif with an e-value <= 0.1
+
+       HOMOLOG:     Homologous genes related to this gene
+                        Organism designator.UniGene cluster ID
+                        Percent of similarity between the two genes
+			URL Reference to PubMed or The Jackson Laboratory
+
+       ALIAS:       Alternate symbols for this gene
+
+       MGC_CLONE:   Full-length MGC clones
+                        IMAGE identifier
+                        GenBank Accession number
+                        GenBank definition
+
+       SNP:         Single Nucleotide Polymorphisms
+                        SNP identifier  (dbSNP ss number)
+                        SNP type - dbSNP or CGAP
+                        GenBank Accession number
+                        Variant nucleotide
+                        Coding or Non-coding
+                        Amino acid substitution at position indicated
+                        Nucleotide offset in accession
+                        SNP status - Confirmed, Validated or Candidate
+
+       SV_CLONE:    Sequence Verified Clones available from the IMAGE Consortium
+                        IMAGE identifier
+                        GenBank Accession number
+
+
+
+Hs_LibData.dat
+Mm_LibData.dat
+
+   The data in the Library Data files represents the information found
+   on the CGAP Library Info page.  Each library section begins with the
+   >> character delimiter followed by the UniGene Library ID. Subsequent lines
+   in the section indicate particular features of the library, each beginning
+   with a descriptive qualifier followed by a colon.  The content of 
+   these lines is described below.
+
+
+   Line types/qualifiers:
+
+       >>CGAP Library ID
+       LIBRARY:             Library name
+       UNIGENE_LIB_ID:      UniGene Library ID
+       DESCR:               Description of the library contents
+       KEYWORDS:            Keywords associated with the library
+       CLONES:              Number of clones
+       SEQS:                Number of sequences
+       LAB_HOST:            Laboratory host
+       PRODUCER:            Producer of the library
+       STRAIN:              Strain of the organism of origin
+       TISSUE:              Tissues represented in the library
+       TISSUE_SUPPLIER:     Supplier of the tissues
+       VECTOR:              Vector name
+       VECTOR_TYPE:         Vector type
+       UNIQUE_TISSUE:       Designated tissue for library
+       UNIQUE_HISTOLOGY:    Designated histology for library
+       UNIQUE_PREPARATION:  Designated preparation for library
+       UNIQUE_PROTOCOL:     Designated protocol for library
+       R_SITE1:             Primary restriction site
+       R_SITE2:             Secondary restriction site
+       RELATED_LIBRARY:     Other libraries associated with this one
+
+
+
+Hs_ExprData.dat
+Mm_ExprData.dat
+
+   The data in the Expression Data files represents the frequency of
+   expression of particular clusters in particular libraries.
+   The columns in the lines are tab-separated.
+   The content of the lines is described below.
+
+
+       UniGene Cluster ID
+       UniGene Library ID	
+       Frequency of expression
+
+
+
+Send comments to the NCI CGAP Help Desk (cgapbs-r@mail.nih.gov).
+

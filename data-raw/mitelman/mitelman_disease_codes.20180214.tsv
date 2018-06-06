@@ -1,0 +1,305 @@
+CANCERCODE	CANCERTYPE	CANCERTYPE_ABBR
+1010	Acute undifferentiated leukemia	AUL
+1020	Bilineage or biphenotypic leukemia	AL BI
+10	Undifferentiated and biphenotypic leukemia (all subtypes)	AUBL
+1101	Acute myeloid leukemia, NOS	AML NOS
+1102	Acute myeloblastic leukemia with minimal differentiation (FAB type M0)	AML M0
+1103	Acute myeloblastic leukemia without maturation (FAB type M1)	AML M1
+1104	Acute myeloblastic leukemia with maturation (FAB type M2)	AML M2
+1106	Acute promyelocytic leukemia (FAB type M3)	AML M3
+1107	Acute myelomonocytic leukemia (FAB type M4)	AML M4
+1108	Acute monoblastic leukemia (FAB type M5)	AML M5
+1109	Acute monoblastic leukemia without differentiation (FAB type M5a)	AML M5A
+1110	Acute monoblastic leukemia with differentiation (FAB type M5b)	AML M5B
+1112	Acute erythroleukemia (FAB type M6)	AML M6
+1113	Acute megakaryoblastic leukemia (FAB type M7)	AML M7
+1115	Acute basophilic leukemia	ABL
+1117	Acute eosinophilic leukemia	AEL
+1119	Acute panmyelosis with myelofibrosis	APM
+1199	Acute myeloid leukemia, special type	AML SPEC
+11	Acute myeloid leukemia (all subtypes)	AML
+1202	Chronic myeloid leukemia, t(9;22)	CML T(9;22)
+1203	Chronic myeloid leukemia, aberrant translocation	CML AB T
+12	Chronic myeloid leukemia (all subtypes)	CML
+1301	Myelodysplastic/myeloproliferative disease, NOS	MDS/MPD NOS
+1302	Chronic myelomonocytic leukemia	CMML
+1303	Atypical chronic myeloid leukemia	ACML
+1304	Juvenile myelomonocytic leukemia	JMML
+1399	Myelodysplastic/myeloproliferative disease, special type	MDS/MPD SPEC
+13	Myelodysplastic/myeloproliferative disease (all subtypes)	MDS/MPD
+1401	Chronic myeloproliferative disorder, NOS	CMD NOS
+1402	Polycythemia vera	PV
+1403	Idiopathic myelofibrosis	MFS
+1404	Essential thrombocythemia	ET
+1405	Chronic neutrophilic leukemia	CNL
+1406	Chronic eosinophilic leukemia/hypereosinophilic syndrome	CEL/HES
+1499	Chronic myeloproliferative disorder, special type	CMD SPEC
+14	Chronic myeloproliferative disorders (all subtypes)	CMD
+1501	Myelodysplastic syndrome, NOS	MDS NOS
+1505	Refractory anemia	RA
+1507	Refractory anemia with ringed sideroblasts	RARS
+1509	Refractory anemia with excess of blasts (FAB)	RAEB
+1515	Refractory cytopenia with multilineage dysplasia	RCMD
+1517	Refractory cytopenia with multilineage dysplasia and ringed sideroblasts	RCMD-RS
+1519	Refractory anemia with excess blasts-1	RAEB-1
+1521	Refractory anemia with excess blasts-2	RAEB-2
+1599	Myelodysplastic syndrome, special type	MDS SPEC
+15	Myelodysplastic syndromes (all subtypes)	MDS
+1602	Acute lymphoblastic leukemia/lymphoblastic lymphoma	ALL
+1699	Lymphoblastic leukemia/lymphoma, special type	ALL/LL SPEC
+16	Precursor lymphoblastic leukemia/lymphoma (all subtypes)	ALL/LL
+1701	Plasma cell neoplasm, NOS	PCN NOS
+1702	Multiple myeloma	MM
+1704	Monoclonal gammopathy of undetermined significance	MGUS
+1706	Plasmacytoma	PC
+1708	Plasma cell leukemia	PCL
+1710	Waldenström macroglobulinemia	WM
+1712	Heavy chain disease	HCD
+1714	Primary amyloidosis	PA
+1799	Plasma cell neoplasm, special type	PCN SPEC
+17	Plasma cell neoplasms (all subtypes)	PCN
+1801	Mature B-cell neoplasm, NOS	MBCN NOS
+1802	Chronic lymphocytic leukemia	B-CLL/SLL
+1804	B-prolymphocytic leukemia	B-PLL
+1806	Lymphoplasmacytic lymphoma	LPL
+1808	Mantle cell lymphoma	MCL
+1810	Follicular lymphoma	FL
+1812	Extranodal marginal zone B-cell lymphoma	MALT
+1814	Nodal marginal zone B-cell lymphoma	NMZL
+1816	Splenic marginal zone B-cell lymphoma	SMZL
+1818	Hairy cell leukemia	HCL
+1820	Diffuse large B-cell lymphoma	DLBCL
+1822	Burkitt lymphoma/leukemia	BL
+1830	Intravascular large B-cell lymphoma	ILBL
+1835	Primary effusion lymphoma	PEL
+1840	Mediastinal large B-cell lymphoma	MLBL
+1845	B-cell lymphoma associated with hemophagocytic syndrome	BLHPS
+1899	Mature B-cell neoplasm, special type	MBC SPEC
+18	Mature B-cell neoplasms (all subtypes)	MBC
+1901	Mature T- and NK-cell neoplasm, NOS	MTC NOS
+1902	T-prolymphocytic leukemia	T-PLL
+1904	T-cell granular lymphocytic leukemia	T-GLL
+1906	Mycosis fungoides/Sézary syndrome	MF/SS
+1908	Peripheral T-cell lymphoma, unspecified	PTL
+1910	Angioimmunoblastic T-cell lymphoma	AIL
+1912	Extranodal NK/T-cell lymphoma	ENTL
+1914	Aggressive NK-cell leukemia	ANL
+1916	Enteropathy-type T-cell lymphoma	ETL
+1918	Hepatosplenic T-cell lymphoma	HSTL
+1920	Subcutaneous panniculitis-like T-cell lymphoma	SPTL
+1922	Anaplastic large cell lymphoma, systemic type	ALCL-S
+1924	Anaplastic large cell lymphoma, cutaneous type	ALCL-C
+1926	Adult T-cell lymphoma/leukemia (HTLV-1+)	ATL
+1999	Mature T- and NK-cell neoplasm, special type	MTC SPEC
+19	Mature T- and NK-cell neoplasms (all subtypes)	MTC
+2001	Hodgkin disease, NOS	HD NOS
+2002	Hodgkin disease, lymphocyte predominance	HD LP
+2003	Hodgkin disease, mixed cellularity	HD MC
+2004	Hodgkin disease, lymphocyte depletion	HD LD
+2005	Hodgkin disease, nodular sclerosis	HD NS
+20	Hodgkin disease (all subtypes)	HD
+2410	Dendritic cell neoplasm	DCN
+2415	Histiocytic sarcoma/malignant histiocytosis	HS/MH
+2420	Langerhans cell histiocytosis	LCH
+2430	Mastocytosis	MAST
+2440	Post-transplant lymphoproliferative disorder	PTLD
+2499	Miscellaneous hematopoietic/lymphoid neoplasm, special type	MHL SPEC
+24	Miscellaneous hematopoietic/lymphoid neoplasms (all subtypes)	MHL
+3001	Benign epithelial tumor, NOS	BET NOS
+3003	Adenoma	AD
+3011	Papilloma	PAP
+3031	Oncocytoma	ONC
+3041	Warthin tumor	WARTHIN
+3055	Phyllodes tumor, benign	PHYLL BEN
+3099	Benign epithelial tumor, special type	BET SPEC
+30	Benign epithelial neoplasms (all subtypes)	BET
+3101	Carcinoma in situ	CANCER SITU
+3102	Carcinoma, NOS	CANCER NOS
+3103	Undifferentiated carcinoma	CANCER UNDIFF
+3104	Undifferentiated carcinoma, large cell	CANCER L CELL
+3105	Undifferentiated carcinoma, small cell	CANCER SM CELL
+3107	Metaplastic carcinoma	CANCER METAPL
+3111	Adenocarcinoma	CANCER AD
+3113	Adenoid cystic carcinoma	CANCER AD CYST
+3115	Mucoepidermoid carcinoma	CANCER MUCEP
+3117	Acinic cell carcinoma	CANCER ACINIC
+3119	Adenosquamous carcinoma	CANCER ADSQ
+3121	Squamous cell carcinoma	CANCER SQ CELL
+3123	Basal cell carcinoma	CANCER BC
+3125	Merkel cell carcinoma	CANCER MERKEL
+3131	Transitional cell carcinoma	CANCER TR CELL
+3135	Wilms tumor	WILMS
+3141	Hepatoblastoma	HPT
+3151	Carcinoid tumor	CARCD
+3155	Phyllodes tumor, malignant	PHYLL MAL
+3199	Malignant epithelial tumor, special type	MET SPEC
+31	Malignant epithelial neoplasms (all subtypes)	MEN
+3901	Germ cell tumor, NOS	GCT NOS
+3902	Seminoma/Dysgerminoma	SEM
+3903	Teratoma (mature and immature)	TERAT
+3905	Combined germ cell tumors	SEM/TERAT
+3909	Gonadal stromal cell tumors	GST
+3999	Germ cell tumor, special type	GCT SPEC
+39	Germ cell and gonadal stromal cell neoplasms (all subtypes)	GCT
+5101	Glioma, NOS	GLI NOS
+5102	Astrocytoma, NOS	ASTCYT
+5103	Astrocytoma, grade I-II	ASTCYT I-II
+5104	Astrocytoma, grade III-IV/Glioblastoma	ASTCYT III-IV
+5105	Astrocytoma, pilocytic/juvenile	ASTCYT JUV
+5107	Oligodendroglioma	OLIGDGL
+5109	Ependymoma	EPENDYM
+5115	Choroid plexus papilloma/carcinoma	PLEX PAP
+5199	Neuroglial neoplasm, special type	NGN SPEC
+51	Neuroglial neoplasms (all subtypes)	NGN
+5201	Embryonal nervous system tumor, NOS	EMBR NERV
+5211	Retinoblastoma	RETBL
+5213	Neuroblastoma	NEURBL
+5220	Primitive neuroectodermal tumor/Medulloblastoma	PNET
+5230	Peripheral neuroepithelioma	PER NEURO
+5299	Embryonal nervous system tumor, special type	EMBR NERV SPEC
+52	Embryonal nervous system tumors (all subtypes)	EN
+6001	Nevus, NOS	NEVUS
+6002	Benign nevus	BEN NEVUS
+6003	Dysplastic nevus	DYS NEVUS
+6011	Malignant melanoma	MAL MEL
+6099	Melanocytic neoplasm, special type	MELN SPEC
+60	Melanocytic neoplasms (all subtypes)	MELN
+8001	Adipocytic tumor, NOS	ADIPO
+8004	Lipoma	LIP
+8007	Lipoblastoma	LIP BLAST
+8010	Angiolipoma	LIP ANG
+8013	Myolipoma	LIP MYO
+8016	Chondroid lipoma	LIP CHONDR
+8019	Angiomyolipoma	LIP ANGMYO
+8022	Spindle cell/pleomorphic lipoma	LIP SPINDLE
+8025	Hibernoma	HIB
+8028	Atypical lipomatous tumor/atypical lipoma/well-differentiated liposarcoma	SARC LIP ATYP
+8031	Liposarcoma, dedifferentiated	SARC LIP DEDIFF
+8034	Liposarcoma, myxoid/round cell	SARC LIP MYX
+8037	Liposarcoma, pleomorphic	SARC LIP PLEO
+8040	Liposarcoma, NOS	SARC LIP
+8099	Adipocytic tumor, special type	ADIPO SPEC
+80	Adipocytic tumors (all subtypes)	ADIPOCYTIC
+8101	Fibroblastic/myofibroblastic tumor, NOS	FIB MYOFIB
+8104	Nodular fasciitis	NOD FASC
+8105	Proliferative fasciitis/myositis	PROL FASC
+8107	Myositis ossificans	MYOSITIS
+8110	Fibroma	FIBR
+8111	Fibroma of tendon sheath	FIBR TEND SHEATH
+8112	Desmoplastic fibroblastoma	DESMOPL FIBR
+8113	Angiofibroma	FIBR ANG
+8116	Solitary fibrous tumor	SOL FIBR
+8119	Superficial fibromatosis	FIBROMATOSIS
+8122	Desmoid-type fibromatosis	DESMOID
+8125	Inflammatory myofibroblastic tumor/myofibroblastic sarcoma	SARC MYO FIBR
+8128	Dermatofibrosarcoma protuberans/Bednar tumor/giant cell fibroblastoma	DFSP
+8131	Fibrosarcoma	SARC FIBR
+8134	Low-grade fibromyxoid sarcoma	SARC LGFMS
+8135	Sclerosing epithelioid fibrosarcoma	SARC SEF
+8136	Myxoinflammatory fibroblastic sarcoma	SARC MIFS
+8137	Myxofibrosarcoma	SARC MYX FIBR
+8199	Fibroblastic/myofibroblastic tumor, special type	FIB MYOFIB SPEC
+81	Fibroblastic/myofibroblastic tumors (all subtypes)	FIBROBLASTIC
+8201	Fibrohistiocytic tumor, NOS	FIBROHIST
+8204	Localized giant cell tumor of tendon sheath	GCT TENDON
+8207	Diffuse-type giant cell tumor	GCT DIFFUSE
+8210	Benign fibrous histiocytoma	FIBR HIST
+8215	Plexiform fibrohistiocytic tumor	PLEX FIBROHIST
+8299	Fibrohistiocytic tumor, special type	FIBROHIST SPEC
+82	Fibrohistiocytic tumors (all subtypes)	FIBROHISTIOCYTIC
+8301	Muscle tumor, NOS	MYO
+8304	Leiomyoma	LEI
+8307	Myogenic sarcoma, NOS	SARC MYO
+8310	Leiomyosarcoma	SARC LEI
+8313	Rhabdomyoma	RHABD
+8316	Rhabdomyosarcoma, NOS	SARC RHABD
+8319	Embryonal rhabdomyosarcoma	SARC RHABD EMB
+8322	Alveolar rhabdomyosarcoma	SARC RHABD ALV
+8325	Pleomorphic rhabdomyosarcoma	SARC RHABD PLEO
+8327	Spindle cell/sclerosing rhabdomyosarcoma	SARC RHABD SPINDLE/SCLER
+8399	Muscle tumor, special type	MYO SPEC
+83	Muscle tumors (all subtypes)	MUSCLE
+8401	Vascular and perivascular tumor, NOS	VASC
+8404	Hemangioma/lymphangioma	ANGIOMA
+8405	Pericytoma	PERICYTOMA
+8406	Pseudomyogenic hemangioendothelioma	PSEUDMYO HEMANG
+8407	Epithelioid hemangioendothelioma	EPITHEL HEMANG
+8410	Glomus tumor	GLOMUS
+8416	Kaposi sarcoma	SARC KAPOSI
+8419	Angiosarcoma	SARC ANGIO
+8499	Vascular and perivascular tumor, special type	VASC SPEC
+84	Vascular and perivascular tumors (all subtypes)	VASCULAR
+8501	Soft tissue tumor, NOS	SOFT
+8504	Myxoma	MX
+8505	Pleomorphic hyalinizing angiectatic tumor	PHAT
+8506	Angiomatoid fibrous histiocytoma	AFH
+8507	Neurofibroma	NEUR FIBR
+8510	Schwannoma	SCHWANN
+8513	Perineurioma	PERI NEUR
+8516	Malignant peripheral nerve sheath tumor/Triton	MPNST
+8517	Ossifying fibromyxoid tumor	OFMT
+8519	Myoepithelioma/myoepithelial carcinoma/mixed tumor	MYOEPITHELIAL
+8520	Hemosiderotic fibrolipomatous tumor	HFLT
+8522	Synovial sarcoma	SARC SYN
+8525	Epithelioid sarcoma	SARC EPITHEL
+8528	Alveolar soft part sarcoma	SARC ALV SOFT
+8531	Clear cell sarcoma	SARC CLEAR
+8534	Desmoplastic small round cell tumor	DSRCT
+8537	PEComa	PECOMA
+8540	Undifferentiated sarcoma	SARC UNDIFF
+8541	Undifferentiated pleomorphic sarcoma	SARC UNDIFF PLEO
+8542	Undifferentiated round cell sarcoma	SARC UNDIFF ROUND
+8545	Intimal sarcoma	SARC INTIMAL
+8599	Soft tissue tumor, special type	SOFT SPEC
+85	Miscellaneous soft tissue tumors (all subtypes)	SOFT TISSUE
+8601	Cartilage tumor, NOS	CARTILAGE
+8604	Osteochondroma	EXO
+8607	Chondroma	CHONDR
+8608	Subungual exostosis	SUBUNG EXO
+8609	Bizarre parosteal osteochondromatous proliferation	BPOP
+8610	Chondroblastoma	CHONDR BLAST
+8613	Chondromyxoid fibroma	CHONDR MYX
+8616	Synovial chondromatosis	CHONDR SYN
+8619	Chondroid hamartoma	CHONDR HAM
+8622	Chondrosarcoma, NOS	SARC CHONDR
+8625	Chondrosarcoma, myxoid	SARC CHONDR MYX
+8628	Chondrosarcoma, mesenchymal	SARC CHONDR MES
+8631	Chondrosarcoma, clear cell	SARC CHONDR CLEAR
+8634	Chondrosarcoma, dedifferentiated	SARC CHONDR DEDIFF
+8699	Cartilage tumor, special type	CARTILAGE SPEC
+86	Cartilage tumors (all subtypes)	CHONDROGENIC
+8701	Osteogenic/bone tumor, NOS	OSTEO
+8704	Osteoid osteoma	OSTEOMA
+8707	Osteoblastoma	OST BLAST
+8710	Osteosarcoma, NOS	SARC OST
+8713	Osteosarcoma, telangiectatic	SARC OST TEL
+8716	Osteosarcoma, small cell	SARC OST SMALL
+8719	Osteosarcoma, parosteal	SARC OST PAR
+8722	Osteosarcoma, periosteal	SARC OST PERI
+8725	Aneurysmal bone cyst	ABC
+8728	Fibrous dysplasia	FIBR DYS
+8731	Osteofibrous dysplasia	OST FIBR DYS
+8734	Giant cell tumor of bone	GCT BONE
+8737	Adamantinoma	ADAMANT
+8740	Ewing sarcoma	SARC EWING
+8743	Chordoma	CHORD
+8799	Osteogenic/bone tumor, special type	OSTEO SPEC
+87	Osteogenic/miscellaneous bone tumors (all subtypes)	OSTEOGENIC
+8801	Mesenchymal tumor, NOS	MESEN TUM
+8804	Meningioma	MENING
+8807	Mesoblastic nephroma	MES NEPHR
+8810	Mesothelioma	MESO
+8813	Endometrial stromal sarcoma	END STROMAL
+8816	Gastrointestinal stromal tumor	GI STROMAL
+8819	Rhabdoid tumor	RHABDOID
+8899	Mesenchymal tumor, special type	MESEN TUM SPEC
+88	Miscellaneous mesenchymal tumors (all subtypes)	MESENCHYMAL
+9010	Hyperplasia	HYPERPL
+9013	Metaplasia	METAPL
+9016	Dysplasia	DYSPL
+9029	Nonneoplastic hematologic disorder/lesion	NONNEO HEMAT
+9049	Nonneoplastic epithelial disorder/lesion	NONNEO EPITH
+9059	Nonneoplastic mesenchymal disorder/lesion	NONNEO MES
+9069	Nonneoplastic neurogenic disorder/lesion	NONNEO NEURO
+9099	Nonneoplastic disorder/lesion, special type	NONNEO SPEC
+90	Nonneoplastic disorders/lesions (all subtypes)	NONNEO
