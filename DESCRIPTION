@@ -3,7 +3,7 @@ Type: Package
 Title: Functional annotation of somatic translocations in cancer
 Version: 0.1.0
 Author: Sigve Nakken
-Maintainer: Sigve Nakken (sigven@ifi.uio.no)
+Maintainer: Sigve Nakken <sigven@ifi.uio.no>
 Description: This tiny R package reads output from a somatic structural variant caller (Manta), and annotates translocations with
     i) chromsomal cytoband information, ii) translocation name (using standard nomenclature), iii) known recurrent translocation events from the Mitelman database.
     The package requires that the Manta VCF output (*.somaticSV.vcf.gz) is converted to tab-separated values file (TSV) using https://github.com/sigven/vcf2tsv
