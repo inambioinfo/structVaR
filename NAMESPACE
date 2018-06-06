@@ -1,5 +1,7 @@
 exportPattern("^[[:alpha:]]+")
 
 export(map_cytoband)
+export(map_translocation_mate)
 export(parse_manta_sv)
+export(valid_manta_data)
 

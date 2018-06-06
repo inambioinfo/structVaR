@@ -86,7 +86,7 @@ parse_manta_sv <- function(manta_vcf2tsv_fname, build = 'grch37', translocations
   rlogging::message('Filename: ', manta_vcf2tsv_fname)
   manta_tsv_raw <- read.table(file=manta_vcf2tsv_fname,skip = 1,header=T,stringsAsFactors = F,quote = "")
   rlogging::message('Validating Manta data')
-  structVaR::check_valid_manta(manta_tsv_raw)
+  structVaR::valid_manta_data(manta_tsv_raw)
 
   manta_df <- dplyr::mutate(manta_tsv_raw, chromosome = CHROM) %>%
     dplyr::select(-c(CHROM)) %>%
