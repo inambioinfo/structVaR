@@ -1,0 +1,15 @@
+Package: structVaR
+Type: Package
+Title: Functional annotation of somatic translocations in cancer
+Version: 0.1.0
+Author: Sigve Nakken
+Maintainer: Sigve Nakken (sigven@ifi.uio.no)
+Description: This tiny R package reads output from a somatic structural variant caller (Manta), and annotates translocations with
+    i) chromsomal cytoband information, ii) translocation name (using standard nomenclature), iii) known recurrent translocation events from the Mitelman database.
+    The package requires that the Manta VCF output (*.somaticSV.vcf.gz) is converted to tab-separated values file (TSV) using https://github.com/sigven/vcf2tsv
+Depends: stringr, BSgenome.Hsapiens.UCSC.hg19, BSgenome.Hsapiens.UCSC.hg38, dplyr, magrittr, rlogging, tidyr, GenomicRanges
+License: What license is it under?
+Encoding: UTF-8
+URL: http://github.com/sigven/structVar
+BugReports: http://github.com/sigven/structVar/issues
+LazyData: true
