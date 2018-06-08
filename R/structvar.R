@@ -7,8 +7,8 @@ map_translocation_mate <- function(manta_df){
 
   mate_mapped_translocations <- data.frame()
   if('ID' %in% colnames(manta_df) && 'MATEID' %in% colnames(manta_df) && 'CYTOBAND' %in% colnames(manta_df) && 'VCF_SAMPLE_ID' %in% colnames(manta_df) && 'ALT' %in% colnames(manta_df)){
-    manta_mate_data <- dplyr::select(manta_df, MATEID, ALT, VCF_SAMPLE_ID, CYTOBAND) %>%
-      dplyr::rename(CYTOBAND_PARTNER = CYTOBAND, ALT_PARTNER = ALT)
+    manta_mate_data <- dplyr::select(manta_df, MATEID, ALT, VCF_SAMPLE_ID, CYTOBAND, GENE_LOCUS) %>%
+      dplyr::rename(CYTOBAND_PARTNER = CYTOBAND, ALT_PARTNER = ALT, GENE_LOCUS_PARTNER = GENE_LOCUS)
 
     translocations <- dplyr::left_join(manta_df, manta_mate_data, by=c("ID" = "MATEID", "VCF_SAMPLE_ID" = "VCF_SAMPLE_ID"))
     translocations <- tidyr::separate(translocations, CYTOBAND, c('cyto_chrom','cyto_band'),sep=":")
@@ -128,12 +128,9 @@ parse_manta_sv <- function(manta_vcf2tsv_fname, build = 'grch37', translocations
 
   manta_df <- manta_df %>%
     dplyr::select(chromosome,POS,ALT,segmentID,VCF_SAMPLE_ID,SVTYPE,ID,FILTER,BND_DEPTH,MATE_BND_DEPTH,MATEID,SOMATICSCORE,PR,SR) %>%
-    #dplyr::filter(FILTER == 'PASS') %>%
     dplyr::filter(!stringr::str_detect(VCF_SAMPLE_ID,control_sample_pattern)) %>%
     dplyr::rename(PAIRED_READ_SUPPORT_TUMOR = PR, SPLIT_READ_SUPPORT_TUMOR = SR) %>%
     dplyr::select(-FILTER)
-
-
 
   if(control_genotypes_found){
     manta_df <- dplyr::left_join(manta_df, manta_df_control, by=c("ID"))
@@ -149,26 +146,43 @@ parse_manta_sv <- function(manta_vcf2tsv_fname, build = 'grch37', translocations
   manta_gr <- NULL
   if(nrow(manta_df) > 0){
     manta_df$SOMATIC_CALL_CONFIDENCE <- 'High'
-    if(nrow(manta_df[manta_df$SOMATICSCORE < 30,]) > 0){
-      manta_df$SOMATIC_CALL_CONFIDENCE <- 'Low'
-    }
-    if(build == 'grch37'){
-      manta_gr <- GenomicRanges::makeGRangesFromDataFrame(manta_df, keep.extra.columns = T, seqinfo = seqinfo(BSgenome.Hsapiens.UCSC.hg19), seqnames.field = 'chromosome',start.field = 'POS', end.field = 'POS', ignore.strand = T, starts.in.df.are.0based = T)
-    }
-    if(build == 'grch38'){
-      manta_gr <- GenomicRanges::makeGRangesFromDataFrame(manta_df, keep.extra.columns = T, seqinfo = seqinfo(BSgenome.Hsapiens.UCSC.hg38), seqnames.field = 'chromosome',start.field = 'segment_start', end.field = 'segment_end', ignore.strand = T, starts.in.df.are.0based = T)
+    if(nrow(manta_df[as.integer(manta_df$SOMATICSCORE) < 30,]) > 0){
+      manta_df[as.integer(manta_df$SOMATICSCORE) < 30,]$SOMATIC_CALL_CONFIDENCE <- 'Low'
     }
 
+    gencode_gr <- NULL
+    if(build == 'grch37'){
+      manta_gr <- GenomicRanges::makeGRangesFromDataFrame(manta_df, keep.extra.columns = T, seqinfo = seqinfo(BSgenome.Hsapiens.UCSC.hg19), seqnames.field = 'chromosome',start.field = 'POS', end.field = 'POS', ignore.strand = T, starts.in.df.are.0based = T)
+      gencode_gr <- structVaR::gencode_grch37
+    }
+    if(build == 'grch38'){
+      manta_gr <- GenomicRanges::makeGRangesFromDataFrame(manta_df, keep.extra.columns = T, seqinfo = seqinfo(BSgenome.Hsapiens.UCSC.hg38), seqnames.field = 'chromosome',start.field = 'POS', end.field = 'POS', ignore.strand = T, starts.in.df.are.0based = T)
+      gencode_gr <- structVaR::gencode_grch38
+    }
+
+    #nearest_gene_locus_index <- GenomicRanges::nearest(manta_gr, gencode_gr)
+    #nearest_gene_locus <- as.data.frame(mcols(gencode_gr[nearest_gene_locus_index,]))
+
+    nearest_gene_locus_hits <- GenomicRanges::nearest(manta_gr, gencode_gr, select="all")
+    ranges <- gencode_gr[subjectHits(nearest_gene_locus_hits)]
+    mcols(ranges) <- c(mcols(ranges),mcols(manta_gr[queryHits(nearest_gene_locus_hits)]))
+    gene_df <- as.data.frame(mcols(ranges))
+    gene_df <- dplyr::select(gene_df, symbol, segmentID,tsgene,ts_oncogene) %>% dplyr::group_by(segmentID) %>% dplyr::summarise(GENE_LOCUS = paste(sort(unique(symbol)),collapse="|"))
+    manta_df <- dplyr::left_join(manta_df, gene_df, by=c("segmentID"))
     cytoband_map <- structVaR::map_cytoband(manta_gr, build = build)
     manta_df <- dplyr::left_join(manta_df, cytoband_map, by=c("segmentID"))
     manta_df <- structVaR::map_translocation_mate(manta_df)
     manta_df$ID_MATEID <- paste0(manta_df$ID, '_', manta_df$MATEID)
     manta_df$BREAKENDS <- paste0(manta_df$ALT, ' - ', manta_df$ALT_PARTNER)
-    manta_df <- dplyr::select(manta_df, -c(ALT, ALT_PARTNER, ID, MATEID, SVTYPE))
-
+    manta_df$GENE_LOCI_BREAKPOINTS <- paste0(manta_df$GENE_LOCUS, ';', manta_df$GENE_LOCUS_PARTNER)
+    manta_df <- dplyr::select(manta_df, -c(ALT, ALT_PARTNER, ID, MATEID, GENE_LOCUS, GENE_LOCUS_PARTNER, SVTYPE))
     manta_df <- dplyr::left_join(manta_df, structVaR::mitelman_aberrations, by=c("ABERRATION"))
+  }else{
+    rlogging::message('Zero translocation events detected')
   }
 
   return(list('df' = manta_df, 'gr' = manta_gr))
 
 }
+
+
